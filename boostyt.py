@@ -36,7 +36,7 @@ def watch_video_thread(thread_id, video_url, agent, proxy):
         driver.set_page_load_timeout(35)
         driver.get(video_url)
         
-        watch_time = random.randint(15, 25)
+        watch_time = random.randint(60, 120)
         print(f"📺 [Thread {thread_id}] កំពុងមើលវីដេអូ រង់ចាំ {watch_time} វិនាទី...")
         time.sleep(watch_time)
         
@@ -52,7 +52,7 @@ def watch_video_thread(thread_id, video_url, agent, proxy):
             except:
                 pass
 
-def get_live_proxies_fast_api(limit=3):
+def get_live_proxies_fast_api(limit=5):
     print("\n🌐 កំពុងទាក់ទងទៅ Proxyscrape API ដើម្បីទាញយក Proxy ថ្មីៗល្បឿនលឿន...")
     api_url = f"https://api.proxyscrape.com/v2/?request=displayproxies&protocol=http&timeout=10000&country=all&ssl=all&anonymity=all"
     try:
@@ -66,15 +66,17 @@ def get_live_proxies_fast_api(limit=3):
 
 # ==================== ដំណើរការកម្មវិធីមេ (AUTO-RUN LOOP) ====================
 if __name__ == "__main__":
-    target_video = "https://youtu.be/YuWlVPwXnsc?si=GSbYei3r7sda1yKF"
-    total_threads = 3  
+    target_video = "https://youtu.be/-pBgqGwGppM?si=F66f1o9RWCrjscg3"
+    total_threads = 5  
     round_count = 1  
 
-    user_agents_pool = [
-        "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36",
-        "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36",
-        "Mozilla/5.0 (Linux; Android 13; SM-S901B) AppleWebKit/537.36"
-    ]
+   user_agents_pool = [
+    "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36",
+    "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36",
+    "Mozilla/5.0 (Linux; Android 13; SM-S901B) AppleWebKit/537.36",
+    "Mozilla/5.0 (iPhone; CPU iPhone OS 16_5 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/16.5 Mobile/15E148 Safari/604.1",
+    "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/114.0"
+]
 
     # 🔥 ប្រើ while True ដើម្បីឱ្យវា Run រហូតមិនចេះឈប់លើ Cloud
     while True:
