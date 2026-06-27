@@ -70,7 +70,7 @@ if __name__ == "__main__":
     total_threads = 5  
     round_count = 1  
 
-   user_agents_pool = [
+user_agents_pool = [
     "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36",
     "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36",
     "Mozilla/5.0 (Linux; Android 13; SM-S901B) AppleWebKit/537.36",
