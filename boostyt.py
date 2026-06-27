@@ -82,29 +82,29 @@ user_agents_pool = [
 while True:
      print(f"\n⚡🔄⚡ ================== ចាប់ផ្តើមរត់ AUTO ជុំទី {round_count} ================== ⚡🔄⚡")
         
-        proxies_pool = get_live_proxies_fast_api(limit=total_threads)
+    proxies_pool = get_live_proxies_fast_api(limit=total_threads)
         
     if proxies_pool and proxies_pool[0] != "":
         print(f"🎯 ទទួលបាន {len(proxies_pool)} Proxies សម្រាប់ជុំនេះ: {proxies_pool}")
-            threads_list = []
+         threads_list = []
 
          for i in range(len(proxies_pool)):
-                t = threading.Thread(
-                    target=watch_video_thread, 
-                    args=(i+1, target_video, user_agents_pool[i % len(user_agents_pool)], proxies_pool[i])
-                )
-                threads_list.append(t)
-                t.start()
+             t = threading.Thread(
+                  target=watch_video_thread, 
+                  args=(i+1, target_video, user_agents_pool[i % len(user_agents_pool)], proxies_pool[i])
+               )
+             threads_list.append(t)
+              t.start()
 
          for t in threads_list:
-                t.join()
+            t.join()
 
-            print(f"\n🎉 [មេកង] ជុំទី {round_count} ត្រូវបានបញ្ចប់សព្វគ្រប់!")
-            round_count += 1  # បូកជុំឡើងទៅមុខឥតកំណត់
+         print(f"\n🎉 [មេកង] ជុំទី {round_count} ត្រូវបានបញ្ចប់សព្វគ្រប់!")
+         round_count += 1  # បូកជុំឡើងទៅមុខឥតកំណត់
             
             # សម្រាក ១០ វិនាទី មុននឹងបុកជុំថ្មី
-            print("⏳ សម្រាក ១០ វិនាទី មុននឹងចាប់ផ្តើមជុំបន្ទាប់...")
-            time.sleep(10)
+         print("⏳ សម្រាក ១០ វិនាទី មុននឹងចាប់ផ្តើមជុំបន្ទាប់...")
+        time.sleep(10)
      else:
-            print("❌ គ្មានទិន្នន័យ Proxy ទេ! រង់ចាំ ៣០ វិនាទី រួចសាកល្បងទៅបឺតយកម្តងទៀត...")
-            time.sleep(30)
+         print("❌ គ្មានទិន្នន័យ Proxy ទេ! រង់ចាំ ៣០ វិនាទី រួចសាកល្បងទៅបឺតយកម្តងទៀត...")
+         time.sleep(30)
