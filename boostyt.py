@@ -36,7 +36,7 @@ def watch_video_thread(thread_id, video_url, agent, proxy):
         driver.set_page_load_timeout(35)
         driver.get(video_url)
         
-        watch_time = random.randint(60, 120)
+        watch_time = random.randint(120, 180)
         print(f"📺 [Thread {thread_id}] កំពុងមើលវីដេអូ រង់ចាំ {watch_time} វិនាទី...")
         time.sleep(watch_time)
         
@@ -66,45 +66,45 @@ def get_live_proxies_fast_api(limit=5):
 
 # ==================== ដំណើរការកម្មវិធីមេ (AUTO-RUN LOOP) ====================
 if __name__ == "__main__":
-    target_video = "https://youtu.be/-pBgqGwGppM?si=F66f1o9RWCrjscg3"
+    target_video = "https://youtu.be/5eW-Q0FkXXA?si=U6UKLHRZPrEvyyYs"
     total_threads = 5  
     round_count = 1  
 
-user_agents_pool = [
-    "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36",
-    "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36",
-    "Mozilla/5.0 (Linux; Android 13; SM-S901B) AppleWebKit/537.36",
-    "Mozilla/5.0 (iPhone; CPU iPhone OS 16_5 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/16.5 Mobile/15E148 Safari/604.1",
-    "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/114.0"
-]
+    user_agents_pool = [
+        "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36",
+        "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36",
+        "Mozilla/5.0 (Linux; Android 13; SM-S901B) AppleWebKit/537.36",
+        "Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Mobile Safari/537.36",
+        "Mozilla/5.0 (Android 13; Mobile; rv:109.0) Gecko/114.0 Firefox/114.0"
+    ]
 
     # 🔥 ប្រើ while True ដើម្បីឱ្យវា Run រហូតមិនចេះឈប់លើ Cloud
-while True:
-     print(f"\n⚡🔄⚡ ================== ចាប់ផ្តើមរត់ AUTO ជុំទី {round_count} ================== ⚡🔄⚡")
+    while True:
+        print(f"\n⚡🔄⚡ ================== ចាប់ផ្តើមរត់ AUTO ជុំទី {round_count} ================== ⚡🔄⚡")
         
-    proxies_pool = get_live_proxies_fast_api(limit=total_threads)
+        proxies_pool = get_live_proxies_fast_api(limit=total_threads)
         
-    if proxies_pool and proxies_pool[0] != "":
-        print(f"🎯 ទទួលបាន {len(proxies_pool)} Proxies សម្រាប់ជុំនេះ: {proxies_pool}")
-         threads_list = []
+        if proxies_pool and proxies_pool[0] != "":
+            print(f"🎯 ទទួលបាន {len(proxies_pool)} Proxies សម្រាប់ជុំនេះ: {proxies_pool}")
+            threads_list = []
 
-         for i in range(len(proxies_pool)):
-             t = threading.Thread(
-                  target=watch_video_thread, 
-                  args=(i+1, target_video, user_agents_pool[i % len(user_agents_pool)], proxies_pool[i])
-               )
-             threads_list.append(t)
-              t.start()
+            for i in range(len(proxies_pool)):
+                t = threading.Thread(
+                    target=watch_video_thread, 
+                    args=(i+1, target_video, user_agents_pool[i % len(user_agents_pool)], proxies_pool[i])
+                )
+                threads_list.append(t)
+                t.start()
 
-         for t in threads_list:
-            t.join()
+            for t in threads_list:
+                t.join()
 
-         print(f"\n🎉 [មេកង] ជុំទី {round_count} ត្រូវបានបញ្ចប់សព្វគ្រប់!")
-         round_count += 1  # បូកជុំឡើងទៅមុខឥតកំណត់
+            print(f"\n🎉 [មេកង] ជុំទី {round_count} ត្រូវបានបញ្ចប់សព្វគ្រប់!")
+            round_count += 1  # បូកជុំឡើងទៅមុខឥតកំណត់
             
             # សម្រាក ១០ វិនាទី មុននឹងបុកជុំថ្មី
-         print("⏳ សម្រាក ១០ វិនាទី មុននឹងចាប់ផ្តើមជុំបន្ទាប់...")
-        time.sleep(10)
-     else:
-         print("❌ គ្មានទិន្នន័យ Proxy ទេ! រង់ចាំ ៣០ វិនាទី រួចសាកល្បងទៅបឺតយកម្តងទៀត...")
-         time.sleep(30)
+            print("⏳ សម្រាក ១០ វិនាទី មុននឹងចាប់ផ្តើមជុំបន្ទាប់...")
+            time.sleep(10)
+        else:
+            print("❌ គ្មានទិន្នន័យ Proxy ទេ! រង់ចាំ ៣០ វិនាទី រួចសាកល្បងទៅបឺតយកម្តងទៀត...")
+            time.sleep(30)
