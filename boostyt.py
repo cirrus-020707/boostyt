@@ -36,7 +36,7 @@ def watch_video_thread(thread_id, video_url, agent, proxy):
         driver.set_page_load_timeout(35)
         driver.get(video_url)
         
-        watch_time = random.randint(120, 180)
+        watch_time = random.randint(60, 120)
         print(f"📺 [Thread {thread_id}] កំពុងមើលវីដេអូ រង់ចាំ {watch_time} វិនាទី...")
         time.sleep(watch_time)
         
@@ -66,7 +66,7 @@ def get_live_proxies_fast_api(limit=5):
 
 # ==================== ដំណើរការកម្មវិធីមេ (AUTO-RUN LOOP) ====================
 if __name__ == "__main__":
-    target_video = "https://youtu.be/5eW-Q0FkXXA?si=U6UKLHRZPrEvyyYs"
+    target_video = "https://youtu.be/-pBgqGwGppM?si=I9eNZSWNHeKIn3hn"
     total_threads = 5  
     round_count = 1  
 
