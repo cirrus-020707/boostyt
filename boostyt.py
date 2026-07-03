@@ -54,7 +54,7 @@ def watch_video_thread(thread_id, video_url, agent, proxy):
 
 def get_live_proxies_fast_api(limit=5):
     print("\n🌐 កំពុងទាក់ទងទៅ Proxyscrape API ដើម្បីទាញយក Proxy ថ្មីៗល្បឿនលឿន...")
-    api_url = f"https://api.proxyscrape.com/v2/?request=displayproxies&protocol=http&timeout=10000&country=all&ssl=all&anonymity=all"
+    api_url = f"https://raw.githubusercontent.com/obitokh/proxy/refs/heads/main/proxyscrape_premium_http_proxies.txt"
     try:
         response = requests.get(api_url, timeout=30)
         all_proxies = response.text.strip().split("\r\n")
